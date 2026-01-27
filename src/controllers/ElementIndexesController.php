@@ -331,14 +331,14 @@ class ElementIndexesController extends BaseElementsController
             $success = false;
             $message = $event->message;
         }
-
+        
+        if (!$success) {
+            return $this->asFailure($message);
+        }
+        
         // Respond
         if ($action->isDownload()) {
             return $this->response;
-        }
-
-        if (!$success) {
-            return $this->asFailure($message);
         }
 
         // Send a new set of elements
